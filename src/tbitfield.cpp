@@ -13,22 +13,26 @@ static TBitField FAKE_BITFIELD(1);
 
 TBitField::TBitField(int len)
 {
-    BitLen = len;
-    MemLen = len / bitsInElem;
-    if (len % bitsInElem> 0) {
-        MemLen++;
+    if (len > 0) {
+        BitLen = len;
+        MemLen = len / bitsInElem;
+        if (len % bitsInElem > 0) {
+            MemLen++;
+        }
+        pMem = new TELEM[MemLen]();
+        for (int i = 0; i < MemLen; i++) {
+            pMem[i].bit0 = 0;
+            pMem[i].bit1 = 0;
+            pMem[i].bit2 = 0;
+            pMem[i].bit3 = 0;
+            pMem[i].bit4 = 0;
+            pMem[i].bit5 = 0;
+            pMem[i].bit6 = 0;
+            pMem[i].bit7 = 0;
+        }
     }
-    pMem = new TELEM[MemLen]();
-    for (int i = 0; i < MemLen; i++) {
-        pMem[i].bit0 = 0;
-        pMem[i].bit1 = 0;
-        pMem[i].bit2 = 0;
-        pMem[i].bit3 = 0;
-        pMem[i].bit4 = 0;
-        pMem[i].bit5 = 0;
-        pMem[i].bit6 = 0;
-        pMem[i].bit7 = 0;
-    }
+    else
+        throw out_of_range("Bitfild lenght can not be less zero")
 }
 
 TBitField::TBitField(const TBitField &bf) // конструктор копирования

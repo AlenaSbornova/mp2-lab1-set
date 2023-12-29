@@ -14,9 +14,13 @@ static TSet FAKE_SET(1);
 
 TSet::TSet(int mp) : BitField(-1)
 {
-    MaxPower = mp;
-    TBitField b(mp);
-    BitField = b;
+    if (mp > 0) {
+        MaxPower = mp;
+        TBitField b(mp);
+        BitField = b;
+    }
+    else
+        throw out_of_range("Set max power can not be less zero")
 }
 
 // конструктор копирования
