@@ -96,7 +96,11 @@ int TSet::operator!=(const TSet &s) const // сравнение
 
 TSet TSet::operator+(const TSet &s) // объединение
 {
-    int p;
+    int m;
+    if (MaxPower > s.GetMaxPower())
+        m = MaxPower;
+    else
+        m = s.GetMaxPower();
     TSet st(MaxPower);
     st.BitField = BitField | s.BitField;
     return st;
@@ -120,7 +124,12 @@ TSet TSet::operator-(const int Elem) // разность с элементом
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
-    TSet st(MaxPower);
+    int m;
+    if (MaxPower < s.GetMaxPower())
+        m = MaxPower;
+    else
+        m = s.GetMaxPower();
+    TSet st(m);
     st.BitField = BitField & s.BitField;
     return st;
 }
