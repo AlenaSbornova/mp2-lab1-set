@@ -9,6 +9,7 @@
 #define __BITFIELD_H__
 
 #include <iostream>
+#include <bit>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ private:
   int  BitLen; // длина битового поля - макс. к-во битов
   TELEM *pMem; // память для представления битового поля
   int  MemLen; // к-во эл-тов Мем для представления бит.поля
+  size_t bitsInElem = numeric_limits<TELEM>::digits;
+  size_t shiftSize = 3;
 
   // методы реализации
   int   GetMemIndex(const int n) const; // индекс в pМем для бита n       (#О2)
