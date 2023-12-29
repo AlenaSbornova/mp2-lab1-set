@@ -67,7 +67,7 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 
 void TBitField::SetBit(const int n) // установить бит
 {
-    if (n < BitLen) {
+    if (((n < BitLen) && (n >= 0)) {
         int ind = (*this).GetMemIndex(n);
         TELEM mask = (*this).GetMemMask(n);
         pMem[ind] = pMem[ind] | mask;
@@ -78,15 +78,23 @@ void TBitField::SetBit(const int n) // установить бит
 
 void TBitField::ClrBit(const int n) // очистить бит
 {
+    if ((n < BitLen) && (n >= 0)) {
     int ind = (*this).GetMemIndex(n);
     TELEM mask = (*this).GetMemMask(n);
     pMem[ind] = pMem[ind] & (~mask);
+    }
+    else
+        throw out_of_range("You can not clear bit out of range 0..lenght-1");
 }
 
 int TBitField::GetBit(const int n) const // получить значение бита
 {
+    if ((n < BitLen)&&(n>=0)) {
     int ind = (*this).GetMemIndex(n);
     return pMem[ind].BitZn(n%bitsInElem);
+    }
+    else
+        throw out_of_range("You can not get bit out of range 0..lenght-1");
 }
 
 // битовые операции
