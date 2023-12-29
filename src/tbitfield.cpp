@@ -13,6 +13,10 @@ static TBitField FAKE_BITFIELD(1);
 
 TBitField::TBitField(int len)
 {
+    BitLen = len;
+    int r = sizeof TELEM;
+    MemLen = len / r;
+    if (len )
 }
 
 TBitField::TBitField(const TBitField &bf) // конструктор копирования
