@@ -12,8 +12,205 @@
 #include <bit>
 
 using namespace std;
-
-typedef unsigned int TELEM;
+class TELEM {
+public:
+	unsigned int bit0 : 1;
+	unsigned int bit1 : 1;
+	unsigned int bit2 : 1;
+	unsigned int bit3 : 1;
+	unsigned int bit4 : 1;
+	unsigned int bit5 : 1;
+	unsigned int bit6 : 1;
+	unsigned int bit7 : 1;
+	TELEM operator=(TELEM t) {
+		bit0 = t.bit0;
+		bit1 = t.bit1;
+		bit2 = t.bit2;
+		bit3 = t.bit3;
+		bit4 = t.bit4;
+		bit5 = t.bit5;
+		bit6 = t.bit6;
+		bit7 = t.bit7;
+		return *this;
+	}
+	TELEM operator=(int i) {
+		switch (i) {
+		case 0:
+			bit0 = 1;
+			break;
+		case 1:
+			bit1 = 1;
+			break;
+		case 2:
+			bit2 = 1;
+			break;
+		case 3:
+			bit3 = 1;
+			break;
+		case 4:
+			bit4 = 1;
+			break;
+		case 5:
+			bit5 = 1;
+			break;
+		case 6:
+			bit6 = 1;
+			break;
+		case 7:
+			bit7 = 1;
+			break;
+		}
+		return *this;
+	}
+	TELEM operator|(TELEM t) {
+		TELEM re;
+		if ((bit0 = 1) || (t.bit0 = 1))
+			re.bit0 = 1;
+		else
+			re.bit0 = 0;
+		if ((bit1 = 1) || (t.bit1 = 1))
+			re.bit1 = 1;
+		else
+			re.bit1 = 0;
+		if ((bit2 = 1) || (t.bit2 = 1))
+			re.bit2 = 1;
+		else
+			re.bit2 = 0;
+		if ((bit3 = 1) || (t.bit3 = 1))
+			re.bit3 = 1;
+		else
+			re.bit3 = 0;
+		if ((bit4 = 1) || (t.bit4 = 1))
+			re.bit4 = 1;
+		else
+			re.bit4 = 0;
+		if ((bit5 = 1) || (t.bit5 = 1))
+			re.bit5 = 1;
+		else
+			re.bit5 = 0;
+		if ((bit6 = 1) || (t.bit6 = 1))
+			re.bit6 = 1;
+		else
+			re.bit6 = 0;
+		if ((bit7 = 1) || (t.bit7 = 1))
+			re.bit7 = 1;
+		else
+			re.bit7 = 0;
+		return re;
+	}
+	TELEM operator&(TELEM t) {
+		TELEM re;
+		if ((bit0 = 1) && (t.bit0 = 1))
+			re.bit0 = 1;
+		else
+			re.bit0 = 0;
+		if ((bit1 = 1) && (t.bit1 = 1))
+			re.bit1 = 1;
+		else
+			re.bit1 = 0;
+		if ((bit2 = 1) && (t.bit2 = 1))
+			re.bit2 = 1;
+		else
+			re.bit2 = 0;
+		if ((bit3 = 1) && (t.bit3 = 1))
+			re.bit3 = 1;
+		else
+			re.bit3 = 0;
+		if ((bit4 = 1) && (t.bit4 = 1))
+			re.bit4 = 1;
+		else
+			re.bit4 = 0;
+		if ((bit5 = 1) && (t.bit5 = 1))
+			re.bit5 = 1;
+		else
+			re.bit5 = 0;
+		if ((bit6 = 1) && (t.bit6 = 1))
+			re.bit6 = 1;
+		else
+			re.bit6 = 0;
+		if ((bit7 = 1) && (t.bit7 = 1))
+			re.bit7 = 1;
+		else
+			re.bit7 = 0;
+		return re;
+	}
+	TELEM operator~() {
+		TELEM re;
+		if (bit0 = 1)
+			re.bit0 = 0;
+		else
+			re.bit0 = 1;
+		if (bit1 = 1)
+			re.bit1 = 0;
+		else
+			re.bit1 = 1;
+		if (bit2 = 1)
+			re.bit2 = 0;
+		else
+			re.bit2 = 1;
+		if (bit3 = 1)
+			re.bit3 = 0;
+		else
+			re.bit3 = 1;
+		if (bit4 = 1)
+			re.bit4 = 0;
+		else
+			re.bit4 = 1;
+		if (bit5 = 1)
+			re.bit5 = 0;
+		else
+			re.bit5 = 1;
+		if (bit6 = 1)
+			re.bit6 = 0;
+		else
+			re.bit6 = 1;
+		if (bit7 = 1)
+			re.bit7 = 0;
+		else
+			re.bit7 = 01;
+		return re;
+	}
+	int BitZn(int n) {
+		switch (n) {
+		case 0:
+			return bit0;
+			break;
+		case 1:
+			return bit1;
+			break;
+		case 2:
+			return bit2;
+			break;
+		case 3:
+			return bit3;
+			break;
+		case 4:
+			return bit4;
+			break;
+		case 5:
+			return bit5;
+			break;
+		case 6:
+			return bit6;
+			break;
+		case 7:
+			return bit7;
+			break;
+		}
+	}
+	int operator==(TELEM t) {
+		if ((bit0 == t.bit0) && (bit1 == t.bit1) && (bit2 == t.bit2) && (bit3 == t.bit3) && (bit4 == t.bit4) && (bit5 == t.bit5) && (bit6 == t.bit6) && (bit7 == t.bit7))
+			return 0;
+		else
+			return 1;
+	}
+	int operator !=(TELEM t) {
+		if (*this == t)
+			return 1;
+		else
+			return 0;
+	}
+};
 
 class TBitField
 {
@@ -21,7 +218,7 @@ private:
   int  BitLen; // длина битового поля - макс. к-во битов
   TELEM *pMem; // память для представления битового поля
   int  MemLen; // к-во эл-тов Мем для представления бит.поля
-  size_t bitsInElem = numeric_limits<TELEM>::digits;
+  size_t bitsInElem = 8;
   size_t shiftSize = 3;
 
   // методы реализации
