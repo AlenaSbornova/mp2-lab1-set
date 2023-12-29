@@ -20,7 +20,7 @@ TSet::TSet(int mp) : BitField(-1)
         BitField = b;
     }
     else
-        throw out_of_range("Set max power can not be less zero")
+        throw out_of_range("Set max power can not be less zero");
 }
 
 // конструктор копирования
@@ -49,8 +49,12 @@ int TSet::GetMaxPower(void) const // получить макс. к-во эл-т�
 
 int TSet::IsMember(const int Elem) const // элемент множества?
 {
-    int n = BitField.GetBit(Elem);
-    return n;
+    if (Elem < MaxPower) {
+        int n = BitField.GetBit(Elem);
+        return n;
+    }
+    else
+        return 0;
 }
 
 void TSet::InsElem(const int Elem) // включение элемента множества

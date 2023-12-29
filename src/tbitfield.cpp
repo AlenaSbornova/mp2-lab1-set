@@ -32,7 +32,7 @@ TBitField::TBitField(int len)
         }
     }
     else
-        throw out_of_range("Bitfild lenght can not be less zero")
+        throw out_of_range("Bitfild lenght can not be less zero");
 }
 
 TBitField::TBitField(const TBitField &bf) // конструктор копирования
@@ -67,9 +67,13 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 
 void TBitField::SetBit(const int n) // установить бит
 {
-    int ind = (*this).GetMemIndex(n);
-    TELEM mask = (*this).GetMemMask(n);
-    pMem[ind] = pMem[ind] | mask;
+    if (n < BitLen) {
+        int ind = (*this).GetMemIndex(n);
+        TELEM mask = (*this).GetMemMask(n);
+        pMem[ind] = pMem[ind] | mask;
+    }
+    else
+        throw out_of_range("You can not set bit out of range 0..lenght-1")
 }
 
 void TBitField::ClrBit(const int n) // очистить бит
