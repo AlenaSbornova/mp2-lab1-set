@@ -73,7 +73,7 @@ void TBitField::SetBit(const int n) // установить бит
         pMem[ind] = pMem[ind] | mask;
     }
     else
-        throw out_of_range("You can not set bit out of range 0..lenght-1")
+        throw out_of_range("You can not set bit out of range 0..lenght-1");
 }
 
 void TBitField::ClrBit(const int n) // очистить бит
